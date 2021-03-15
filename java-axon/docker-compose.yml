@@ -1,0 +1,9 @@
+version: "3.3"
+services:
+  # the event store
+  axon-server:
+    build: ./axon-server
+    container_name: axon-server
+    ports:
+      - "8024:8024"
+      - "8124:8124"

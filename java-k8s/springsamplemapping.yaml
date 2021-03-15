@@ -1,0 +1,8 @@
+---
+apiVersion: getambassador.io/v2
+kind:  Mapping
+metadata:
+  name:  springsample-mapping
+spec:
+  prefix: /springsample/
+  service: springlb:8080

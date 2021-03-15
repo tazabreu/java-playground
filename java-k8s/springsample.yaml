@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: springdeployment
+  name: springdeployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springdeployment
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: springdeployment
+    spec:
+      containers:
+      - image: docker.io/danielbryantuk/springsample:latest
+        name: springsample
+        resources: {}
+status: {}

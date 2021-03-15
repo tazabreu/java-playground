@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  spring-rest-api:
+    image: spring-rest-api-0.0.1
+    ports:
+      - '8080:8080'
+
+  postgresql:
+    image: postgres:12.2-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password # non-sensitive, thus explicit
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./01-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+      - ./02-data.sql:/docker-entrypoint-initdb.d/02-data.sql
+
+  pgAdmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "tazabreu@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "password"
+    ports:
+      - "5433:80"
+    depends_on:
+      - postgresql
